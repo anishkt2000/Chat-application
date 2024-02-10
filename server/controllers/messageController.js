@@ -4,19 +4,22 @@ module.exports.getMessage =async (req,res,next)=>{
 
     try{
         const {from,to} =req.body;
+    
         const message =await Messages.find({
             users: {
-                $all :[from,to],
+                $ne :[from.toString(),to.toString()]
             },
 
         }).sort({updatedAt: 1});
+     
+        
         const projectedMessages = message.map((msg) => {
             return {
-              fromSelf: msg.sender.toString() === from,
+            //   fromSelf: msg.sender.toString() === from,
+              fromSelf: from,
               message: msg.message.text,
             };
           });
-          console.log(projectedMessages);
           res.json(projectedMessages);
     }
     catch(ex){

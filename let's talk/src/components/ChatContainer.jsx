@@ -45,20 +45,18 @@ export default function ChatContainer({ currentChat, socket }) {
       message: msg,
     });
 
-    // const msgs = [...messages];
-    // msgs.push({ fromSelf: true, message: msg });
-    // console.log([{ fromSelf: true, message: msg }])
    setMessages([...messages,{ fromSelf: true, message: msg }]);
    
   };
 
-  useEffect(() => {
+   useEffect(() => {
+    
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
-  }, []);
+   });
 
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
