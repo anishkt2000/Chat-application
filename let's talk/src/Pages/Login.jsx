@@ -1,118 +1,107 @@
-import React, {useState,useEffect} from 'react'
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from "../assets/logo.svg"
-import {ToastContainer,toast} from "react-toastify";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from 'axios'
-import { loginRoute } from '../utils/APIRoutes';
- function Login() {
-    const navigate =useNavigate();
-    const [values,setvalue]=useState({
-        username:"",
-        password:"",
-    });
-    const handlesubmit= async (event)=>{
-        event.preventDefault();
-       if(handleValidation()){
-        const {password,username } =values;
-        const { data } = await axios.post(loginRoute, {
-          username,
-          password,
-        });
-    
-        if(data.status ===false){
-            toast.error(data.msg,toastOption);
-        }
-        if(data.status ===true){
-            localStorage.setItem("chat-app-user",JSON.stringify(data.user));
-             if (localStorage.getItem("chat-app-user").isAvatarImageSet ===false){
-               navigate("/setAvatar");
-             }
-             navigate("/");
-           
-        }
-       
-       
+import axios from "axios";
+import { loginRoute } from "../utils/APIRoutes";
+function Login() {
+  const navigate = useNavigate();
+  const [values, setvalue] = useState({
+    username: "",
+    password: "",
+  });
+  const handlesubmit = async (event) => {
+    event.preventDefault();
+    if (handleValidation()) {
+      const { password, username } = values;
+      const { data } = await axios.post(loginRoute, {
+        username,
+        password,
+      });
 
-       };
-    }
-    const toastOption={
-        position: "bottom-right",
-        autoClose: 8000,
-        pauseOnHover :true,
-        draggable :true,
-        theme:"dark",
-    }
-    useEffect(()=>{
-     
-      if(localStorage.getItem("chat-app-user")){
-         if (localStorage.getItem("chat-app-user").isAvatarImageSet ===false ){
-             navigate("/setAvatar");
-          }
-        navigate('/')
+      if (data.status === false) {
+        toast.error(data.msg, toastOption);
       }
-    },[])
-    const handleValidation= ()=>{
-        const {password,username } =values;
-      
-         if(username.length===""){
-            toast.error(
-                "username and Password is required",
-                toastOption
-            );
-            return false;
+      if (data.status === true) {
+        localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+        if (localStorage.getItem("chat-app-user").isAvatarImageSet === false) {
+          navigate("/setAvatar");
         }
-        else if(password ===""){
-            toast.error(
-              "username and Password is required",
-                toastOption
-            );
-            return false;
-          }
-        return true;
+        navigate("/");
+      }
+    }
+  };
+  const toastOption = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      if (localStorage.getItem("chat-app-user").isAvatarImageSet === false) {
+        navigate("/setAvatar");
+      }
+      navigate("/");
+    }
+  }, []);
+  const handleValidation = () => {
+    const { password, username } = values;
 
+    if (username.length === "") {
+      toast.error("username and Password is required", toastOption);
+      return false;
+    } else if (password === "") {
+      toast.error("username and Password is required", toastOption);
+      return false;
     }
-    const handlecChange=(event)=>{
-        setvalue({...values,[event.target.name] :event.target.value});
-    }
+    return true;
+  };
+  const handlecChange = (event) => {
+    setvalue({ ...values, [event.target.name]: event.target.value });
+  };
   return (
     <>
-        <FormContainer>
-            <form onSubmit={(event)=>handlesubmit(event)}>
-                <div className="brand">
-                <img src={logo} alt='Logo'/>
-                <h1>chatHub</h1>
-                </div>
-                <input
-                    type='text'
-                    placeholder='Username' 
-                    name='username' 
-                    onChange={(e)=>handlecChange(e)}
-                    min="3"
-                 />
-                  <input
-                    type='password'
-                    placeholder='Password' 
-                    name='password' 
-                    onChange={(e)=>handlecChange(e)}
-                 />
-                 <button type='submit'>Sign In</button>
-                 {/* <div className='or'>OR</div>
-                 <span>
-                 <div> forget your password ? </div>
-                 </span> */}
-                 <span>Does'nt have an account ? 
-                 <Link to="/register"> Register</Link>
-                 </span>
-                 
-             </form>
-        </FormContainer>
-        <ToastContainer/>
+      <FormContainer>
+        <form onSubmit={(event) => handlesubmit(event)}>
+          <div className="brand">
+            <img src={logo} alt="Logo" />
+            <h1>chatHub</h1>
+          </div>
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            onChange={(e) => handlecChange(e)}
+            min="3"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={(e) => handlecChange(e)}
+          />
+          <button type="submit">Sign In</button>
+          <div className="or">OR</div>
+          <span>
+            <span>
+              forgot your password?
+              <Link to="/ResetPassword"> Reset</Link>
+            </span>
+          </span>
+          <span>
+            Does'nt have an account ?<Link to="/register"> Register</Link>
+          </span>
+        </form>
+      </FormContainer>
+      <ToastContainer />
     </>
-  )
+  );
 }
-const FormContainer =styled.div`
+const FormContainer = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -170,6 +159,9 @@ const FormContainer =styled.div`
       background-color: #4e0eff;
     }
   }
+  button:hover {
+    background-color: #4e0eff50;
+  }
   span {
     color: white;
     text-transform: uppercase;
@@ -178,14 +170,16 @@ const FormContainer =styled.div`
       text-decoration: none;
       font-weight: bold;
     }
+    a:hover {
+      color: #4e0eff50;
+    }
   }
-  .or{
-    color:white;
-    display:flex;
-    font-size:0.8rem;
-    justify-content:center;
+  .or {
+    color: white;
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: center;
   }
 `;
 
 export default Login;
-

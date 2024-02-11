@@ -5,7 +5,7 @@ import Logout from "./Logout";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
-import chatbg from "../../public/image/chat_wallpaper.jpg";
+import chatbg from "../assets/chat_wallpaper.jpg";
 
 export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);

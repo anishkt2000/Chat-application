@@ -120,9 +120,14 @@ const Container = styled.div`
         }
       }
     }
+  
     .selected {
       background-color: #9a86f3;
     }
+    
+  }
+  .contacts :hover{
+    background-color: #ffffff80;
   }
 
   .current-user {
