@@ -6,5 +6,5 @@ export const allUsersRoute =`${host}/api/auth/allUsers`;
 export const logOutRoute =`${host}/api/auth/logout`;
 export const sendMessageRoute = `${host}/api/messages/addmsg`;
 export const recieveMessageRoute = `${host}/api/messages/getmsg`;
-export const resetPassword =`${host}/api/auth/resetpassword`;
+export const resetPassword =`${host}/api/auth/forgotpassword`;
 export const suggestUsers =`${host}/api/auth/suggestUser`;
