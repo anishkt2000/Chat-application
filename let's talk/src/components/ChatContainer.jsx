@@ -18,7 +18,7 @@ export default function ChatContainer({ currentChat, socket }) {
       const response = await axios.post(recieveMessageRoute, {
         from: data._id,
         to: currentChat._id,
-      })
+      });
       setMessages(response.data);
     };
     reteriveMess();
@@ -74,7 +74,6 @@ export default function ChatContainer({ currentChat, socket }) {
               src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
               alt=""
             />
-          
           </div>
           <div className="username">
             <h3>{currentChat.username}</h3>
@@ -82,7 +81,10 @@ export default function ChatContainer({ currentChat, socket }) {
         </div>
         <Logout />
       </div>
-      <div className="chat-messages" style={{backgroundImage:`url(${chatbg})`}}>
+      <div
+        className="chat-messages"
+        style={{ backgroundImage: `url(${chatbg})` }}
+      >
         {messages.map((message) => {
           return (
             <div ref={scrollRef} key={uuidv4()}>
@@ -117,7 +119,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    background-color :#080420;
+    background-color: #080420;
     .user-details {
       display: flex;
       align-items: center;
@@ -141,7 +143,7 @@ const Container = styled.div`
     flex-direction: column;
     gap: 1rem;
     overflow: auto;
-    
+
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {

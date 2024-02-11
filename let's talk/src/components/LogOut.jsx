@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { BiPowerOff } from "react-icons/bi";
 import styled from "styled-components";
 import axios from "axios";
-import { logOutRoute } from "../utils/APIRoutes";
 
 export default function LogOut() {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ export default function LogOut() {
     }
   };
   return (
-    <Button  className="logoutButton" onClick={handleclick}>
+    <Button className="logoutButton" onClick={handleclick}>
       <BiPowerOff />
     </Button>
   );
@@ -37,6 +36,6 @@ const Button = styled.button`
     color: #ebe7ff;
   }
   svg:hover {
-    color:blue;
+    color: blue;
   }
 `;

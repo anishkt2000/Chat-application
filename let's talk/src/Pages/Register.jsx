@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { registerRoute } from "../utils/APIRoutes";
-import setAvatar from "../components/SetAvatar";
 
 function Register() {
   const navigate = useNavigate(); // Moved inside the functional component

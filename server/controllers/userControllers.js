@@ -96,7 +96,7 @@ module.exports.logOut = async (req, res, next) => {
 };
 module.exports.forgotPassword = async (req, res, next) => {
   try {
-    const { username,email, password } = req.body;
+    const { username, email, password } = req.body;
     const usernameCheck = await User.findOne({ username });
 
     if (!usernameCheck) {
@@ -107,15 +107,14 @@ module.exports.forgotPassword = async (req, res, next) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.findByIdAndUpdate(usernameCheck._id,{
+    const user = await User.findByIdAndUpdate(usernameCheck._id, {
       username,
       email,
       password: hashedPassword,
       // password,
     });
-    return res.json({ msg: "password updated",status: true,user  });
+    return res.json({ msg: "password updated", status: true, user });
     // emailjs
-
   } catch (ex) {
     next(ex);
   }
