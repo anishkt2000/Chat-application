@@ -60,7 +60,7 @@ export default function Contacts({ contacts, changeChat, setCurrentChat }) {
               />
             </div>
             <div className="username">
-              <h2>{currentUserName ? currentUserName : "user"}</h2>
+              <h2>{currentUserName }</h2>
             </div>
           </div>
         </Container>
@@ -102,7 +102,7 @@ const Container = styled.div`
     }
     .contact {
       background-color: #ffffff34;
-      min-height: 5rem;
+      min-height: 4rem;
       cursor: pointer;
       width: 90%;
       border-radius: 0.2rem;
