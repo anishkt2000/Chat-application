@@ -1,9 +1,13 @@
-Chat Application using MERN Stack
+## Chat Application using MERN Stack
+
 This is a chat application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to register, log in, and communicate with each other in real-time.
 
-Folder Structure
-java
-Copy code
+
+
+
+## Project Structure
+
+```
 chat-application/
 │
 ├── client/
@@ -48,37 +52,57 @@ chat-application/
     │   └── userRoutes.js
     └── utils/
         └── db.js
+```
 
-Setup
-Client Setup:
 
-Navigate to the client directory.
-Install dependencies using npm install.
-Start the client using npm start.
-Server Setup:
+## Project Description
 
-Navigate to the server directory.
-Install dependencies using npm install.
-Create a .env file based on the .env.example file and configure your MongoDB connection string.
-Start the server using npm start.
-Database Setup:
+This is a chat application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to register, log in, and communicate with each other in real-time.
 
-Ensure MongoDB is installed and running.
-Configure the MongoDB connection string in the server's .env file.
-Usage:
+## Setup
 
-Register an account or log in.
-Start chatting with other users in real-time.
-Features
-User authentication (registration, login, logout).
-Real-time messaging using WebSockets.
-User profile settings (e.g., setting avatar).
-Responsive design for mobile and desktop devices.
-Technologies Used
-MongoDB
-Express.js
-React.js
-Node.js
-Socket.IO (for real-time communication)
-Contributors
-Anish Kumar
+### Client Setup:
+
+1. Navigate to the client directory.
+2. Install dependencies using `npm install`.
+3. Start the client using `npm start`.
+
+### Server Setup:
+
+1. Navigate to the server directory.
+2. Install dependencies using `npm install`.
+3. Create a `.env` file based on the `.env.example` file and configure your MongoDB connection string.
+4. Start the server using `npm start`.
+
+## Database Setup
+
+1. Ensure MongoDB is installed and running.
+2. Configure the MongoDB connection string in the server's `.env` file.
+
+## Usage
+
+1. Register an account or log in.
+2. Start chatting with other users in real-time.
+
+## Features
+
+- **User Authentication**: Users can register, log in, and log out securely.
+- **Real-time Messaging**: Users can communicate with each other in real-time using WebSockets.
+- **User Profile Settings**: Users can customize their profiles, such as setting avatars.
+- **Responsive Design**: The application is responsive and works well on both mobile and desktop devices.
+
+## Technologies Used
+
+- MongoDB
+- Express.js
+- React.js
+- Node.js
+- Socket.IO (for real-time communication)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contributors
+
+- [Anish Kumar](https://github.com/anishkt200)
