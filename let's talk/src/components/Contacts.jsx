@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../assets/logo.svg";
 
-export default function Contacts({ contacts, changeChat }) {
+export default function Contacts({ contacts, changeChat, setCurrentChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -18,14 +18,16 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
-
+  const changeToDefault = () => {
+    setCurrentChat(undefined);
+  };
   return (
     <>
       {currentUserImage && currentUserImage && (
         <Container>
           <div className="brand">
             <img src={Logo} alt="logo" />
-            <h3>ChatHub</h3>
+            <h3 onClick={changeToDefault}>ChatHub</h3>
           </div>
           <div className="contacts">
             {contacts.map((contact, index) => {
@@ -120,13 +122,12 @@ const Container = styled.div`
         }
       }
     }
-  
+
     .selected {
       background-color: #9a86f3;
     }
-    
   }
-  .contacts :hover{
+  .contacts :hover {
     background-color: #ffffff80;
   }
 
