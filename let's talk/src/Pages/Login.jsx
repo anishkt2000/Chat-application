@@ -82,7 +82,7 @@ import { loginRoute } from '../utils/APIRoutes';
             <form onSubmit={(event)=>handlesubmit(event)}>
                 <div className="brand">
                 <img src={logo} alt='Logo'/>
-                <h1>snappy</h1>
+                <h1>chatHub</h1>
                 </div>
                 <input
                     type='text'
@@ -98,12 +98,14 @@ import { loginRoute } from '../utils/APIRoutes';
                     onChange={(e)=>handlecChange(e)}
                  />
                  <button type='submit'>Sign In</button>
+                 {/* <div className='or'>OR</div>
+                 <span>
+                 <div> forget your password ? </div>
+                 </span> */}
                  <span>Does'nt have an account ? 
                  <Link to="/register"> Register</Link>
                  </span>
-                 {/* <span>
-                 <Link to="/register"> Have you forget your password ? </Link>
-                 </span> */}
+                 
              </form>
         </FormContainer>
         <ToastContainer/>
@@ -176,6 +178,12 @@ const FormContainer =styled.div`
       text-decoration: none;
       font-weight: bold;
     }
+  }
+  .or{
+    color:white;
+    display:flex;
+    font-size:0.8rem;
+    justify-content:center;
   }
 `;
 

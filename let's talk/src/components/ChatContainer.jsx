@@ -18,8 +18,7 @@ export default function ChatContainer({ currentChat, socket }) {
       const response = await axios.post(recieveMessageRoute, {
         from: data._id,
         to: currentChat._id,
-      });
-      console.log(response.data);
+      })
       setMessages(response.data);
     };
     reteriveMess();
