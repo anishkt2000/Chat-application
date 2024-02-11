@@ -56,7 +56,6 @@ const handleChatChange =(chat)=>{
   
 
 }
-console.log(currentChat);
   return (
       <Container>
         <div className="container">

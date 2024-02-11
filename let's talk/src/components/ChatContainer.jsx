@@ -5,6 +5,7 @@ import Logout from "./Logout";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
+import chatbg from "../../public/image/chat_wallpaper.jpg";
 
 export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
@@ -18,6 +19,7 @@ export default function ChatContainer({ currentChat, socket }) {
         from: data._id,
         to: currentChat._id,
       });
+      console.log(response.data);
       setMessages(response.data);
     };
     reteriveMess();
@@ -45,18 +47,16 @@ export default function ChatContainer({ currentChat, socket }) {
       message: msg,
     });
 
-   setMessages([...messages,{ fromSelf: true, message: msg }]);
-   
+    setMessages([...messages, { fromSelf: true, message: msg }]);
   };
 
-   useEffect(() => {
-    
+  useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
-   });
+  }, [socket.current]);
 
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
@@ -75,6 +75,7 @@ export default function ChatContainer({ currentChat, socket }) {
               src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
               alt=""
             />
+          
           </div>
           <div className="username">
             <h3>{currentChat.username}</h3>
@@ -82,7 +83,7 @@ export default function ChatContainer({ currentChat, socket }) {
         </div>
         <Logout />
       </div>
-      <div className="chat-messages">
+      <div className="chat-messages" style={{backgroundImage:`url(${chatbg})`}}>
         {messages.map((message) => {
           return (
             <div ref={scrollRef} key={uuidv4()}>
@@ -117,6 +118,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+    background-color :#080420;
     .user-details {
       display: flex;
       align-items: center;
@@ -133,12 +135,14 @@ const Container = styled.div`
       }
     }
   }
+
   .chat-messages {
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     overflow: auto;
+    
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
@@ -171,7 +175,7 @@ const Container = styled.div`
     .recieved {
       justify-content: flex-start;
       .content {
-        background-color: #9900ff20;
+        background-color: #9900ff40;
       }
     }
   }

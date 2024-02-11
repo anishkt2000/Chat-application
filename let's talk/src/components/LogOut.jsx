@@ -7,7 +7,7 @@ import { logOutRoute } from "../utils/APIRoutes";
 
 export default function LogOut() {
   const navigate = useNavigate();
- 
+
   const handleclick = async () => {
     const id = await JSON.parse(localStorage.getItem("chat-app-user"))._id;
     const data = await axios.get(`{logOutRoute}/${id}`);

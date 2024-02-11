@@ -12,7 +12,11 @@ const MessageSchema =mongoose.Schema({
                 required : true,
             },
          },
+         timeStamp : {
+            type:String,
+            default: new Date(),
+         }
         
-}, {timestamp :true},
+},
 );
 module.exports =mongoose.model("Messages",MessageSchema);
