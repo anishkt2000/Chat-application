@@ -19,6 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up working directory
+        run: cd server
+        working-directory: ./server
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
